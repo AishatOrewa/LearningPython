@@ -43,8 +43,8 @@ password_label = tkinter.Label(frame, text="Password:", padx=10, pady=5, bg="#62
 password_label.grid(row=2, column=0)
 
 #This code performs the same function explained in line 28
-password_entry = tkinter.Entry(frame)
-password_entry.grid(row=2, column=1,)
+password_entry = tkinter.Entry(frame, show="*")
+password_entry.grid(row=2, column=1)
 
 #This code is used to create a clickable button for the user to use, this sends whatever that was inputed by the user to the terminal.
 submit_button = tkinter.Button(frame, text="SUBMIT", bg="#000000", fg="#6219EB", padx=5, pady=5, font=("Arial", 20), command= enter )
