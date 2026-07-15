@@ -16,8 +16,10 @@ def enter():
   username = "Aishat"
   password = "12345"
   if password==password_entry.get() and username==username_entry.get():
-    print(f"Welcome {username}")
+    messagebox.showinfo(title= "Log in", message="Log in successfully")
+    print(f"congratulations {username}, Login successful")
   else:
+    messagebox.showerror(title="Error", message="INVALID LOGIN! Try Again")
     print("INVALID LOGIN DETAILS!")
   # username = username_entry.get()
   # password = password_entry.get()
