@@ -14,8 +14,8 @@ from tkinter import messagebox
 window = tkinter.Tk()
 window.title('Power')
 
-window.configure(bg='#000000')
-frame = tkinter.Frame()
+window.configure(bg='#ffffff')
+frame = tkinter.Frame(bg="#000000",padx=5,pady=5)
 
 def shutdown():
   answer = messagebox.askyesno(
@@ -38,16 +38,16 @@ def logout():
   )
   if user:
     os.system("shutdown /l")
-PageTitle = tkinter.Label(frame, text='Power Options')
+PageTitle = tkinter.Label(frame, text='Power Options',bg="#000000", fg="#ffffff")
 PageTitle.pack()
 
-Shutdown = tkinter.Button(frame, text="Shutdown", command=shutdown)
+Shutdown = tkinter.Button(frame, text="Shutdown", command=shutdown, bg="#ffffff", fg="#000000")
 Shutdown.pack()
 
-Logout = tkinter.Button(frame, text='LogOut', command=logout)
+Logout = tkinter.Button(frame, text='LogOut', command=logout, bg="#ffffff", fg="#000000")
 Logout.pack()
 
-Restart = tkinter.Button(frame, text='Restart', command=restart)
+Restart = tkinter.Button(frame, text='Restart', command=restart, bg="#ffffff", fg="#000000")
 Restart.pack()
 
 
