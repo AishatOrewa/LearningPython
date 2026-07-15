@@ -50,5 +50,5 @@ password_entry.grid(row=2, column=1)
 submit_button = tkinter.Button(frame, text="SUBMIT", bg="#000000", fg="#6219EB", padx=5, pady=5, font=("Arial", 20), command= enter )
 submit_button.grid(row=4, column=1, sticky="NEWS")
 
-frame.pack()# This is 
+frame.pack()# This is used to center the whole frame
 window.mainloop()# this code allows what ever we write or use with tkinter to run without this code the program won't work i guess.
