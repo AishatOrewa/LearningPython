@@ -1,5 +1,5 @@
 #Siwes-day3
-#learn about Libraries, Tikinter and Geometric managers; .pack(), .grid()
+#learn about Libraries, Tikinter and Geometric managers; .pack(), .grid(), .place()
 
 #Designing a login page with Tikinter
 
