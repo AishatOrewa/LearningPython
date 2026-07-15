@@ -1,3 +1,4 @@
+#Siwes Day2
 #string formatting
 # name = 'Aihat'
 # age = 18
