@@ -4,13 +4,14 @@
 #Designing a login page with Tikinter
 
 import tkinter #This would import the tkinter library, it could be imported as anything else i.e "import tkinter as Tk" this would let your call tkinter as Tk instead of writing the whole word.
-
+from tkinter import messagebox
 window = tkinter.Tk()# this tells the program that we want whatever we are doing to be displayed on the window screen.
 
 window.title('LOGIN PAGE')#Just as the name specify this code specifies the title of whatever would be displayed on the window, it's  just like the title in html that would be displayed in the google tab, but this would be displayed on the window screen.
 window.configure(bg="#6219EB") # this is used to make changes to the background of the window screen.
 #window.geometry learn about this command
 
+#The code below creates the brain behind your submit button this function decides what will happen if you click on the submit button, this here decides whether the message would be sent to the terminal or it would clear the screen just like the refresh button.
 def enter():
   username = "Aishat"
   password = "12345"
