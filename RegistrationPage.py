@@ -5,6 +5,8 @@ from tkinter import ttk
 window = tkinter.Tk()
 
 window.title('Data Entry Form')
+
+#frame1
 User_frame = tkinter.LabelFrame(text='User Information', padx=10, pady=10,font=('Arial'))
 
 User_fname = tkinter.Label(User_frame, text='First Name')
@@ -37,10 +39,33 @@ User_Nationality.grid(row=5, column=2)
 User_nationality = ttk.Combobox(User_frame, values=['Nigeria', 'America', 'Others'])
 User_nationality.grid(row=6, column=2, pady=5, padx=5)
 
-status_frame = tkinter.Frame()
+User_frame.grid(padx=15,pady=15)
+
+#frame2
+status_frame = tkinter.LabelFrame(text='Registration Status',font=('Arial'), padx=20)
+
+course = tkinter.Label(status_frame, text='#Completed Courses')
+course.grid(row=8, column=1)
+
+course_entry = tkinter.Spinbox(status_frame,values=['GST111','GST122','MTH101','MTH111','STA112'])
+course_entry.grid(row=9, column=1,padx=5)
+
+semester = tkinter.Label(status_frame, text='#Semesters')
+semester.grid(row=8, column=2)
+
+semester_entry = tkinter.Spinbox(status_frame, values=['First semester','Second semester'])
+semester_entry.grid(row=9, column=2, padx=5)
+
+registration = tkinter.Checkbutton(status_frame, text='Currently Registered')
+registration.grid(row=9, column=0)
+
+status_frame.grid(padx=15)
+
+#frame3
 terms_frame = tkinter.Frame()
+
+#frame4
 submit_frame = tkinter.Frame()
 
-User_frame.grid(padx=15,pady=15)
 window.geometry('500x450')
 window.mainloop()
