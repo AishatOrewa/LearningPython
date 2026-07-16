@@ -1,0 +1,2 @@
+#Create a registration page that contains four frame, a frame is for user information that contains; first-name, last-name,title,age,nationality. a frame is for Registration Status that contains; completed courses, semesters, currently registered. Third frame would be for terms and conditions that has a checkbox that asks user if they accept the terms and conditions, the last frame is for submit data, a button.
+import tkinter
