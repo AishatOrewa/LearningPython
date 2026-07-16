@@ -24,5 +24,7 @@ User_title.pack()
 
 spin_title = tkinter.Spinbox(window, values=['Mrs', 'Mr', 'Miss'])
 spin_title.pack()
+check_terms = tkinter.Checkbutton(window, text="Do you agree to our terms and conditions?")
+check_terms.pack()
 window.geometry('500x700')
 window.mainloop()
