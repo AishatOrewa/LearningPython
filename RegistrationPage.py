@@ -42,7 +42,7 @@ User_nationality.grid(row=6, column=2, pady=5, padx=5)
 User_frame.grid(padx=15,pady=15)
 
 #frame2
-status_frame = tkinter.LabelFrame(text='Registration Status',font=('Arial'), padx=20)
+status_frame = tkinter.LabelFrame(text='Registration Status',font=('Arial'), padx=20, pady=3)
 
 course = tkinter.Label(status_frame, text='#Completed Courses')
 course.grid(row=8, column=1)
@@ -62,8 +62,12 @@ registration.grid(row=9, column=0)
 status_frame.grid(padx=15)
 
 #frame3
-terms_frame = tkinter.Frame()
+terms_frame = tkinter.LabelFrame(text='Terms & Conditions', font=('Arial'), padx=128)
 
+accept_terms = tkinter.Checkbutton(terms_frame,text='I accept the terms and conditions.')
+accept_terms.grid(column=0)
+
+terms_frame.grid(pady=15)
 #frame4
 submit_frame = tkinter.Frame()
 
