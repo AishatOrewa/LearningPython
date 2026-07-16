@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import ttk
 window = tkinter.Tk()
 window.title("Form")
 
@@ -31,5 +32,8 @@ user_gender = tkinter.Radiobutton(window,variable=radiovar, value='boy',text="Ma
 user_gender.pack()
 user_gender2 = tkinter.Radiobutton(window,variable=radiovar,value='girl', text="Female")
 user_gender2.pack()
+
+user_Weekday = ttk.Combobox(window, values = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'])
+user_Weekday.pack()
 window.geometry('500x700')
 window.mainloop()
