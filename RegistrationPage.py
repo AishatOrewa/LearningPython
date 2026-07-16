@@ -62,12 +62,12 @@ registration.grid(row=9, column=0)
 status_frame.grid(padx=15)
 
 #frame3
-terms_frame = tkinter.LabelFrame(text='Terms & Conditions', font=('Arial'), padx=128)
+terms_frame = tkinter.LabelFrame(text='Terms & Conditions', font=('Arial'))
 
 accept_terms = tkinter.Checkbutton(terms_frame,text='I accept the terms and conditions.')
-accept_terms.grid(column=0)
+accept_terms.grid(row=0,column=0,sticky='w',padx=5,pady=5)
 
-terms_frame.grid(pady=15)
+terms_frame.grid(pady=15,padx=15, sticky='ew')
 
 #frame4
 submit_frame = tkinter.Frame()
