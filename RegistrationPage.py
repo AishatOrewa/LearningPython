@@ -1,10 +1,43 @@
 #Create a registration page that contains four frame, a frame is for user information that contains; first-name, last-name,title,age,nationality. a frame is for Registration Status that contains; completed courses, semesters, currently registered. Third frame would be for terms and conditions that has a checkbox that asks user if they accept the terms and conditions, the last frame is for submit data, a button.
 import tkinter
 from tkinter import ttk
-
+from tkinter import messagebox
 window = tkinter.Tk()
 
 window.title('Data Entry Form')
+
+#Receive Data
+def Enterdata():
+  FN = User_Fname.get()
+  LN = User_Lname.get()
+  Title = User_title.get()
+  Age = User_age.get()
+  Nationality = User_nationality.get()
+  Course = course_entry.get()
+  Semester = semester_entry.get()
+  Registration_Status = accept_var.get()
+  Agree = accept.get()
+
+  if FN and LN != "":
+    if Registration_Status != 0:
+      if Course and Semester != "":
+        if Agree != 0:
+          user = messagebox.askyesno(
+            "Confirm Submission","Are you sure the Information is correct?"
+          )
+          if user:
+            print(f"The student {FN} {LN}, who goes by the title {Title}. Has registered {Course} for the {Semester} and agrees to our terms and conditions")
+          else:
+            messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+        else:
+          messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+      else:
+       messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+    else:
+      messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+  else:
+      messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+
 
 #frame1
 User_frame = tkinter.LabelFrame(text='User Information', padx=10, pady=10,font=('Arial'))
@@ -56,7 +89,8 @@ semester.grid(row=8, column=2)
 semester_entry = tkinter.Spinbox(status_frame, values=['First semester','Second semester'])
 semester_entry.grid(row=9, column=2, padx=5)
 
-registration = tkinter.Checkbutton(status_frame, text='Currently Registered')
+accept_var = tkinter.IntVar()
+registration = tkinter.Checkbutton(status_frame, text='Currently Registered',variable=accept_var)
 registration.grid(row=9, column=0)
 
 status_frame.grid(padx=15)
@@ -64,7 +98,8 @@ status_frame.grid(padx=15)
 #frame3
 terms_frame = tkinter.LabelFrame(text='Terms & Conditions', font=('Arial'))
 
-accept_terms = tkinter.Checkbutton(terms_frame,text='I accept the terms and conditions.')
+accept = tkinter.IntVar()
+accept_terms = tkinter.Checkbutton(terms_frame,text='I accept the terms and conditions.', variable=accept)
 accept_terms.grid(row=0,column=0,sticky='w',padx=5,pady=5)
 
 terms_frame.grid(pady=15,padx=15, sticky='ew')
@@ -72,7 +107,7 @@ terms_frame.grid(pady=15,padx=15, sticky='ew')
 #frame4
 submit_frame = tkinter.Frame()
 
-submit = tkinter.Button(submit_frame, text='Enter data',width=65)
+submit = tkinter.Button(submit_frame, text='Enter data',width=65, command=Enterdata)
 submit.grid()
 
 submit_frame.grid()
