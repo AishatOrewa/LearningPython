@@ -15,7 +15,7 @@ window = tkinter.Tk()
 window.title('Power')
 
 window.configure(bg='#ffffff')
-frame = tkinter.Frame(bg="#000000",padx=5,pady=5)
+frame = tkinter.Frame(bg="#000000")
 
 def shutdown():
   answer = messagebox.askyesno(
@@ -38,18 +38,18 @@ def logout():
   )
   if user:
     os.system("shutdown /l")
-PageTitle = tkinter.Label(frame, text='Power Options',bg="#000000", fg="#ffffff")
-PageTitle.pack()
+PageTitle = tkinter.Label(frame, text='Power Options',bg="#000000", fg="#ffffff", font=('bold', 20))
+PageTitle.grid(row=0, column=2)
 
-Shutdown = tkinter.Button(frame, text="Shutdown", command=shutdown, bg="#ffffff", fg="#000000")
-Shutdown.pack()
+Shutdown = tkinter.Button(frame, text="Shutdown", command=shutdown, bg="red", fg="black")
+Shutdown.grid(row=1, column=1)
 
-Logout = tkinter.Button(frame, text='LogOut', command=logout, bg="#ffffff", fg="#000000")
-Logout.pack()
+Logout = tkinter.Button(frame, text='LogOut', command=logout, bg="green", fg="black")
+Logout.grid(row=1, column=2)
 
-Restart = tkinter.Button(frame, text='Restart', command=restart, bg="#ffffff", fg="#000000")
-Restart.pack()
+Restart = tkinter.Button(frame, text='Restart', command=restart, bg="orange", fg="black")
+Restart.grid(row=1, column=3)
 
-
-frame.pack()
+window.geometry('700x700')
+frame.pack(side='bottom')
 window.mainloop()
