@@ -19,5 +19,10 @@ User_age.pack()
 spin_Age = tkinter.Spinbox(window, from_=0, to=100)
 spin_Age.pack()
 
+User_title = tkinter.Label(window, text='Which of these titles best suits you?')
+User_title.pack()
+
+spin_title = tkinter.Spinbox(window, values=['Mrs', 'Mr', 'Miss'])
+spin_title.pack()
 window.geometry('500x700')
 window.mainloop()
