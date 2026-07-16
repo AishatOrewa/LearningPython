@@ -6,7 +6,7 @@
 # else:
 #   os.system("shutdown /s /t 1")
 
-#Recreating a window that has three button, each button has a function for Restart, Shutdown and logout.
+#Recreating a window that has three button, each button has a function for Restart, Shutdown and logout. for window OS.
 import tkinter
 import os
 from tkinter import messagebox
