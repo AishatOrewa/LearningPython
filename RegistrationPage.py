@@ -68,8 +68,15 @@ accept_terms = tkinter.Checkbutton(terms_frame,text='I accept the terms and cond
 accept_terms.grid(column=0)
 
 terms_frame.grid(pady=15)
+
 #frame4
 submit_frame = tkinter.Frame()
 
-window.geometry('500x450')
+submit = tkinter.Button(submit_frame, text='Enter data',width=65)
+submit.grid()
+
+submit_frame.grid()
+
+
+window.geometry('500x370')
 window.mainloop()
