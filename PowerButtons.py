@@ -50,6 +50,6 @@ Logout.grid(row=1, column=2)
 Restart = tkinter.Button(frame, text='Restart', command=restart, bg="orange", fg="black")
 Restart.grid(row=1, column=3)
 
-window.geometry('700x700')
-frame.pack(side='bottom')
+window.geometry('450x450')
+frame.pack(side='top')
 window.mainloop()
