@@ -80,13 +80,13 @@ status_frame = tkinter.LabelFrame(text='Registration Status',font=('Arial'), pad
 course = tkinter.Label(status_frame, text='#Completed Courses')
 course.grid(row=8, column=1)
 
-course_entry = tkinter.Spinbox(status_frame,values=['GST111','GST122','MTH101','MTH111','STA112'])
+course_entry = tkinter.Spinbox(status_frame,values=['','GST111','GST122','MTH101','MTH111','STA112'])
 course_entry.grid(row=9, column=1,padx=5)
 
 semester = tkinter.Label(status_frame, text='#Semesters')
 semester.grid(row=8, column=2)
 
-semester_entry = tkinter.Spinbox(status_frame, values=['First semester','Second semester'])
+semester_entry = tkinter.Spinbox(status_frame, values=['','First semester','Second semester'])
 semester_entry.grid(row=9, column=2, padx=5)
 
 accept_var = tkinter.IntVar()
