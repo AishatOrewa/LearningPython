@@ -2,10 +2,18 @@
 import tkinter
 from tkinter import ttk
 from tkinter import messagebox
+import openpyxl
+from openpyxl import Workbook
 window = tkinter.Tk()
 
 window.title('Data Entry Form')
 
+#Store Data
+workbook = Workbook()
+sheet = workbook.active
+
+sheet.title = "Data Entry Form Database"
+workbook.save('FormDatabase.xlsx')
 #Receive Data
 def Enterdata():
   FN = User_Fname.get()
