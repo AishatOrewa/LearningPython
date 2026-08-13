@@ -3,7 +3,7 @@ import tkinter
 from tkinter import ttk
 from tkinter import messagebox
 import openpyxl
-from openpyxl import Workbook
+from openpyxl import Workbook,load_workbook
 window = tkinter.Tk()
 
 window.title('Data Entry Form')
@@ -11,9 +11,10 @@ window.title('Data Entry Form')
 #Store Data
 workbook = Workbook()
 sheet = workbook.active
-
 sheet.title = "Data Entry Form Database"
+sheet.append(['First Name','Last Name','Title','Age','Nationality','#Completed Courses','Registration Status','#Semesters','Terms & Conditions'])
 workbook.save('FormDatabase.xlsx')
+
 #Receive Data
 def Enterdata():
   FN = User_Fname.get()
@@ -25,26 +26,26 @@ def Enterdata():
   Semester = semester_entry.get()
   Registration_Status = accept_var.get()
   Agree = accept.get()
-
-  if FN and LN != "":
-    if Registration_Status != 0:
-      if Course and Semester != "":
-        if Agree != 0:
-          user = messagebox.askyesno(
-            "Confirm Submission","Are you sure the Information is correct?"
-          )
-          if user:
-            print(f"The student {FN} {LN}, who goes by the title {Title}. Has registered {Course} for the {Semester} and agrees to our terms and conditions")
-          else:
-            messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
-        else:
-          messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
-      else:
-       messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
-    else:
-      messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+  if  ( FN != "" and LN != "" and Registration_Status !=0 and Course != "" and Semester != "" and Agree != 0):
+    user = messagebox.askyesno(
+      "Confirm Submission",
+      "Are you sure the information is correct?"
+    )
+    if user:
+      workbook = load_workbook('FormDatabase.xlsx')
+      sheet = workbook.active
+      user_data = [FN, LN, Title, Age, Nationality, Course, Semester, Registration_Status, Agree]
+      sheet.append(user_data)
+      workbook.save('FormDatabase.xlsx')
+      messagebox.showinfo(
+        "Success!",
+        "Data Successfully Stored."
+      )
   else:
-      messagebox.showwarning("Warning","Wrong Entry or Unfilled sections")
+    messagebox.showwarning(
+      "Warning",
+      "Please fill in all required fields."
+    )
 
 
 #frame1
@@ -88,7 +89,7 @@ status_frame = tkinter.LabelFrame(text='Registration Status',font=('Arial'), pad
 course = tkinter.Label(status_frame, text='#Completed Courses')
 course.grid(row=8, column=1)
 
-course_entry = tkinter.Spinbox(status_frame,values=['','GST111','GST122','MTH101','MTH111','STA112'])
+course_entry = tkinter.Spinbox(status_frame,from_=0, to='infinity')
 course_entry.grid(row=9, column=1,padx=5)
 
 semester = tkinter.Label(status_frame, text='#Semesters')
