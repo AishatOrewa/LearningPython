@@ -1,126 +1,100 @@
-#Create a registration page that contains four frame, a frame is for user information that contains; first-name, last-name,title,age,nationality. a frame is for Registration Status that contains; completed courses, semesters, currently registered. Third frame would be for terms and conditions that has a checkbox that asks user if they accept the terms and conditions, the last frame is for submit data, a button.
-import tkinter
-from tkinter import ttk
+#REcreating the data entry form from scratch.
+import tkinter #this would import the library tkinter that enables us to create GUI applications
+from tkinter import ttk #this imports a module from tkinter that allows one to create more modern looking applications.
 from tkinter import messagebox
-import openpyxl
-from openpyxl import Workbook,load_workbook
-window = tkinter.Tk()
-
-window.title('Data Entry Form')
-
-#Store Data
-workbook = Workbook()
-sheet = workbook.active
-sheet.title = "Data Entry Form Database"
-sheet.append(['First Name','Last Name','Title','Age','Nationality','#Completed Courses','Registration Status','#Semesters','Terms & Conditions'])
-workbook.save('FormDatabase.xlsx')
-
-#Receive Data
-def Enterdata():
-  FN = User_Fname.get()
-  LN = User_Lname.get()
-  Title = User_title.get()
-  Age = User_age.get()
-  Nationality = User_nationality.get()
-  Course = course_entry.get()
-  Semester = semester_entry.get()
-  Registration_Status = accept_var.get()
-  Agree = accept.get()
-  if  ( FN != "" and LN != "" and Registration_Status !=0 and Course != "" and Semester != "" and Agree != 0):
-    user = messagebox.askyesno(
-      "Confirm Submission",
-      "Are you sure the information is correct?"
-    )
-    if user:
-      workbook = load_workbook('FormDatabase.xlsx')
-      sheet = workbook.active
-      user_data = [FN, LN, Title, Age, Nationality, Course, Semester, Registration_Status, Agree]
-      sheet.append(user_data)
-      workbook.save('FormDatabase.xlsx')
-      messagebox.showinfo(
-        "Success!",
-        "Data Successfully Stored."
-      )
+def enter_data(): #the function to be runned when the button is clicked.
+  first_name = first_name_entry.get()
+  last_name = last_name_entry.get()
+  title = title_combobox.get()
+  age = age_spinbox.get()
+  nationality = nationality_combobox.get() 
+  courses = courses_spinbox.get()
+  semester = semester_spinbox.get()
+  registration = status_var.get()
+  agree = agree_var.get()
+  if first_name and last_name:
+    if agree == "Agreed":
+      print(f"first_name: {first_name} last_name: {last_name} \ntitle:{title} age:{age} \nnationality:{nationality} \ncourses:{courses} semester:{semester} \nregistration:{registration} agree:{agree}")
+      print("-------------------------------------------------------")
+    else:
+      tkinter.messagebox.showwarning(title = "Errorr", message = "You need to accept our terms and conditions.")
   else:
-    messagebox.showwarning(
-      "Warning",
-      "Please fill in all required fields."
-    )
+    tkinter.messagebox.showwarning(title = "Error", message = "First Name and Last Name is required.")
+window = tkinter.Tk() #this creates the main window where all the elements created would be displayed in.
+window.title("Data Entry Form") #This creates the title of the window and displays it at the top part close to the position of tkinter logo.
 
+frame = tkinter.Frame(window) #this is the frame that is created inside of the window.
+frame.pack() #this is a geometric manager that is used to decide where the widget is placed in the parent widget, by default it places the widget in the center of the parent widget.
 
-#frame1
-User_frame = tkinter.LabelFrame(text='User Information', padx=10, pady=10,font=('Arial'))
+#The first sub frame.
+user_info_frame = tkinter.LabelFrame(frame, text='User Information') #This does not create a frame but a labelframe like it creates a subframe inside the frame.
+user_info_frame.grid(row=0, column=0, sticky="news",padx=20, pady=10) #this involves the geometric manager grid and the row and column must be specified in this geometric manager. This frame won't necesarrily show in the window if it has no content in it i.e if no widget is placed in the userinfoframe it won't show in the window.
 
-User_fname = tkinter.Label(User_frame, text='First Name')
-User_fname.grid(row=3, column=1)
+first_name_label = tkinter.Label(user_info_frame, text='First Name')
+first_name_label.grid(row=0, column=0)
 
-User_Fname = tkinter.Entry(User_frame)
-User_Fname.grid(row=4, column=1, pady=5, padx=5)
+last_name_label = tkinter.Label(user_info_frame, text="Last Name")
+last_name_label.grid(row=0, column=1)
 
-User_lname = tkinter.Label(User_frame, text='Last Name')
-User_lname.grid(row=3, column=2)
+first_name_entry = tkinter.Entry(user_info_frame)
+first_name_entry.grid(row=1,column=0)
+last_name_entry = tkinter.Entry(user_info_frame)
+last_name_entry.grid(row=1, column=1)
 
-User_Lname = tkinter.Entry(User_frame)
-User_Lname.grid(row=4, column=2, pady=5, padx=5)
+title_label = tkinter.Label(user_info_frame, text="Title")
+title_label.grid(row=0, column=2)
 
-User_Title = tkinter.Label(User_frame, text='Title')
-User_Title.grid(row=3, column=3)
+title_combobox = ttk.Combobox(user_info_frame, values=['','Miss','Mr.', 'Ms.', 'Dr.'])
+title_combobox.grid(row=1, column=2)
 
-User_title = ttk.Combobox(User_frame,values=['Mr','Mrs','Miss'])
-User_title.grid(row=4, column=3, pady=5,padx=5)
+age_label = tkinter.Label(user_info_frame, text='Age')
+age_label.grid(row=2, column=0)
+age_spinbox = tkinter.Spinbox(user_info_frame, from_= 18, to='infinity')
+age_spinbox.grid(row=3, column=0)
 
-User_Age = tkinter.Label(User_frame, text='Age')
-User_Age.grid(row=5, column=1)
+nationality_label = tkinter.Label(user_info_frame, text='Nationality')
+nationality_label.grid(row=2, column=1)
+nationality_combobox = ttk.Combobox(user_info_frame, values=['','Nigeria','Algeria','America','South Africa', 'Austrailia', 'Other'])
+nationality_combobox.grid(row=3, column=1)
 
-User_age = tkinter.Spinbox(User_frame, from_= 18, to= 30)
-User_age.grid(row=6, column=1,pady=5,padx=5)
+#code to add equal padding to all widget in subFrame1
+for widget in user_info_frame.winfo_children():
+  widget.grid_configure(padx = 5, pady=5)
 
-User_Nationality = tkinter.Label(User_frame, text='Nationality')
-User_Nationality.grid(row=5, column=2)
+#Second SubFrame
+courses_info_frame = tkinter.LabelFrame(frame)
+courses_info_frame.grid(row=1, column=0, sticky="news", padx=20, pady=10) 
 
-User_nationality = ttk.Combobox(User_frame, values=['Nigeria', 'America', 'Others'])
-User_nationality.grid(row=6, column=2, pady=5, padx=5)
+status_label = tkinter.Label(courses_info_frame, text="Registration Status")
+status_var = tkinter.StringVar(value="Not Registered")
+status_check = tkinter.Checkbutton(courses_info_frame, text = "Currently Registered", variable=status_var, onvalue="Registered", offvalue="Not Registered")
+status_label.grid(row=0, column=0)
+status_check.grid(row=1, column=0)
 
-User_frame.grid(padx=15,pady=15)
+courses_label = tkinter.Label(courses_info_frame, text="#Completed Courses")
+courses_spinbox = ttk.Spinbox(courses_info_frame, from_=0, to='infinity')
+courses_label.grid(row=0, column=1)
+courses_spinbox.grid(row=1, column=1)
 
-#frame2
-status_frame = tkinter.LabelFrame(text='Registration Status',font=('Arial'), padx=20, pady=3)
+semester_label = tkinter.Label(courses_info_frame, text="#Semesters")
+semester_spinbox = ttk.Spinbox(courses_info_frame, from_=0, to='infinity')
+semester_label.grid(row=0, column=2)
+semester_spinbox.grid(row=1, column=2)
 
-course = tkinter.Label(status_frame, text='#Completed Courses')
-course.grid(row=8, column=1)
+#code to add equal padding in all widget in subFrame2
+for widget in courses_info_frame.winfo_children():
+  widget.grid_configure(padx = 10, pady=5)
 
-course_entry = tkinter.Spinbox(status_frame,from_=0, to='infinity')
-course_entry.grid(row=9, column=1,padx=5)
+#third sub frame
+tandc_info_frame = tkinter.LabelFrame(frame, text="Terms & Conditions")
+tandc_info_frame.grid(row=2, column=0, sticky="news", padx=20, pady=10)
 
-semester = tkinter.Label(status_frame, text='#Semesters')
-semester.grid(row=8, column=2)
+agree_var = tkinter.StringVar(value="Agreed")
+agree_checkbox = tkinter.Checkbutton(tandc_info_frame, text="I accept the terms and conditions.",variable=agree_var,onvalue="Agreed", offvalue="Not Agreed")
+agree_checkbox.grid(row=0, column=0)
 
-semester_entry = tkinter.Spinbox(status_frame, values=['','First semester','Second semester'])
-semester_entry.grid(row=9, column=2, padx=5)
+#button created with the parent frame.
+button = tkinter.Button(frame, text="Enter Data", command= enter_data) #the "command" listens to the button and whenever the button is clicked it runs the function "enter_data"
+button.grid(row=3, column=0, sticky="news", padx=20,pady=5)
 
-accept_var = tkinter.IntVar()
-registration = tkinter.Checkbutton(status_frame, text='Currently Registered',variable=accept_var)
-registration.grid(row=9, column=0)
-
-status_frame.grid(padx=15)
-
-#frame3
-terms_frame = tkinter.LabelFrame(text='Terms & Conditions', font=('Arial'))
-
-accept = tkinter.IntVar()
-accept_terms = tkinter.Checkbutton(terms_frame,text='I accept the terms and conditions.', variable=accept)
-accept_terms.grid(row=0,column=0,sticky='w',padx=5,pady=5)
-
-terms_frame.grid(pady=15,padx=15, sticky='ew')
-
-#frame4
-submit_frame = tkinter.Frame()
-
-submit = tkinter.Button(submit_frame, text='Enter data',width=65, command=Enterdata)
-submit.grid()
-
-submit_frame.grid()
-
-
-window.geometry('500x370')
-window.mainloop()
+window.mainloop() #this ensures that the window would keep on running infinitely until it's terminated, without this line of code the window would show for only a split second and close.
