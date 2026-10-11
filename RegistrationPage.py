@@ -1,7 +1,9 @@
 #REcreating the data entry form from scratch.
 import tkinter #this would import the library tkinter that enables us to create GUI applications
 from tkinter import ttk #this imports a module from tkinter that allows one to create more modern looking applications.
-from tkinter import messagebox
+from tkinter import messagebox #This function is used to create pop up windows.
+import os
+import openpyxl #the python library that helps us use excel tools in python.
 def enter_data(): #the function to be runned when the button is clicked.
   first_name = first_name_entry.get()
   last_name = last_name_entry.get()
@@ -16,6 +18,17 @@ def enter_data(): #the function to be runned when the button is clicked.
     if agree == "Agreed":
       print(f"first_name: {first_name} last_name: {last_name} \ntitle:{title} age:{age} \nnationality:{nationality} \ncourses:{courses} semester:{semester} \nregistration:{registration} agree:{agree}")
       print("-------------------------------------------------------")
+      filepath = "C:/Users/Dell/OneDrive/Desktop/LearningPython/registrationData.xlsx" #This is used to store the filepath for the excel file to be used
+      if not os.path.exists(filepath): #This checks whether the file specified in filepath exists or not
+        workbook = openpyxl.Workbook() #This is used to open an excel workbook
+        sheet = workbook.active #This tells python to use the sheet that's currently open.
+        heading = ["FirstName","Last Name", "Title", "Age", "Nationaliity", "#Courses", "#Semesters", "Registration Status"] #This creates the content of the heading cell in your excel file using array.
+        sheet.append(heading) #This adds the content of the array to each cell accordingly to how it's listed in heading.
+        workbook.save(filepath)
+      workbook = openpyxl.load_workbook(filepath)
+      sheet = workbook.active
+      sheet.append([first_name,last_name,title,age,nationality,courses,semester,registration])
+      workbook.save(filepath)
     else:
       tkinter.messagebox.showwarning(title = "Errorr", message = "You need to accept our terms and conditions.")
   else:
