@@ -3,7 +3,8 @@ import tkinter #this would import the library tkinter that enables us to create 
 from tkinter import ttk #this imports a module from tkinter that allows one to create more modern looking applications.
 from tkinter import messagebox #This function is used to create pop up windows.
 import os
-import openpyxl #the python library that helps us use excel tools in python.
+# import openpyxl #the python library that helps us use excel tools in python.
+import sqlite3 #Importing the library theat allows us to user sq database.
 def enter_data(): #the function to be runned when the button is clicked.
   first_name = first_name_entry.get()
   last_name = last_name_entry.get()
@@ -18,17 +19,32 @@ def enter_data(): #the function to be runned when the button is clicked.
     if agree == "Agreed":
       print(f"first_name: {first_name} last_name: {last_name} \ntitle:{title} age:{age} \nnationality:{nationality} \ncourses:{courses} semester:{semester} \nregistration:{registration} agree:{agree}")
       print("-------------------------------------------------------")
-      filepath = "C:/Users/Dell/OneDrive/Desktop/LearningPython/registrationData.xlsx" #This is used to store the filepath for the excel file to be used
-      if not os.path.exists(filepath): #This checks whether the file specified in filepath exists or not
-        workbook = openpyxl.Workbook() #This is used to open an excel workbook
-        sheet = workbook.active #This tells python to use the sheet that's currently open.
-        heading = ["FirstName","Last Name", "Title", "Age", "Nationaliity", "#Courses", "#Semesters", "Registration Status"] #This creates the content of the heading cell in your excel file using array.
-        sheet.append(heading) #This adds the content of the array to each cell accordingly to how it's listed in heading.
-        workbook.save(filepath)
-      workbook = openpyxl.load_workbook(filepath)
-      sheet = workbook.active
-      sheet.append([first_name,last_name,title,age,nationality,courses,semester,registration])
-      workbook.save(filepath)
+      # filepath = "C:/Users/Dell/OneDrive/Desktop/LearningPython/registrationData.xlsx" #This is used to store the filepath for the excel file to be used
+      # if not os.path.exists(filepath): #This checks whether the file specified in filepath exists or not
+      #   workbook = openpyxl.Workbook() #This is used to open an excel workbook
+      #   sheet = workbook.active #This tells python to use the sheet that's currently open.
+      #   heading = ["FirstName","Last Name", "Title", "Age", "Nationaliity", "#Courses", "#Semesters", "Registration Status"] #This creates the content of the heading cell in your excel file using array.
+      #   sheet.append(heading) #This adds the content of the array to each cell accordingly to how it's listed in heading.
+      #   workbook.save(filepath)
+      # workbook = openpyxl.load_workbook(filepath)
+      # sheet = workbook.active
+      # sheet.append([first_name,last_name,title,age,nationality,courses,semester,registration])
+      # workbook.save(filepath)
+
+      dbconnect = sqlite3.connect('registrationData.db') #Creating a connection with sq database
+
+
+      table_create_query = ''' CREATE TABLE IF NOT EXISTS Registration_Data (First_name TEXT, Last_name TEXT, Title TEXT, Age INT, Nationality TEXT, Registration TEXT, Courses INT, Semester INT)''' #This creates the table using sql syntax
+      dbconnect.execute(table_create_query) #this is used to execute the code in the table_create_query.
+
+      data_insert = '''INSERT INTO Registration_Data (First_name , Last_name , Title , Age , Nationality , Registration , Courses, Semester) VALUES(?,?,?,?,?,?,?,?)''' #this tells the data base to insert the data from the string written in sql format.
+      data_insert_content = (first_name,last_name,title,age,nationality,registration,courses,semester) #This specifies the values you want to be added and would replace the question marks in the data_insert values.
+      executor = dbconnect.cursor() #This serves like a middle man between sql and db it tells the db what to do, when to do and how to do it.
+      executor.execute(data_insert,data_insert_content) #This executes the sql and tells it to use the data in data_insert_content
+      dbconnect.commit() #in your database you need to commit all your changes, it works like save, if you don't commit your changes it wont be in your database.
+
+
+      dbconnect.close() #Closing the connection, you open and then close a connection with your db
     else:
       tkinter.messagebox.showwarning(title = "Errorr", message = "You need to accept our terms and conditions.")
   else:
