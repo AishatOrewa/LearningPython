@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ToDoLIst</class>
+ <widget class="QMainWindow" name="ToDoLIst">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>446</width>
+    <height>392</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-color:white;
+margin:0px;}
+QListWidget{background-color:blueviolet;
+color:white;
+border-radius:8px;
+padding:4px;
+margin:1rem;
+text-align:center;}
+QPushButton{background-color:blueviolet;
+color:white;
+border-radius:8px;
+width:fit-content;
+padding:4px;
+font-weight:bold;
+margin:1rem;}
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">
+</string>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QListWidget" name="listWidget">
+      <property name="styleSheet">
+       <string notr="true">QListWidget{background-color:blueviolet;
+color:white;
+border-radius:8px;
+padding:4px;
+margin:1rem;}
+QPushButton{background-color:blueviolet;
+color:white;
+border-radius:8px;
+width:fit-content;
+padding:4px;
+margin:1rem;}
+</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Toggle All</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
