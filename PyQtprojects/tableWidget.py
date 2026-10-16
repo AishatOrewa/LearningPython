@@ -18,15 +18,6 @@ class Main(QWidget):
     sheet = workbook.active
     self.table.setRowCount(sheet.max_row)
     self.table.setColumnCount(sheet.max_column)
-
-
-    values = list(sheet.values)
-    # self.table.setHorizontalHeader(values[0])
-    self.table.setHorizontalHeaderLabels(values[0])
-    row = 0
-
-    self.table.setRowCount(sheet.max_row)
-    self.table.setColumnCount(sheet.max_column)
     
     
     values = list(sheet.values)
