@@ -11,7 +11,13 @@ class Main(QWidget):
     self.setLayout(layout)
     self.table = QTableWidget()
     layout.addWidget(self.table)
+    self.load_data()
+  def load_data(self):
+    filepath = "C:/Users/Dell/OneDrive/Desktop/FoodiesPalace.xlsx"
+    workbook = openpyxl.load_workbook(filepath)
+    sheet = workbook.active
 
+    
     
     
 if __name__ == '__main__':
