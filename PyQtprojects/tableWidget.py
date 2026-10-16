@@ -25,7 +25,20 @@ class Main(QWidget):
     self.table.setHorizontalHeaderLabels(values[0])
     row = 0
 
+    self.table.setRowCount(sheet.max_row)
+    self.table.setColumnCount(sheet.max_column)
     
+    
+    values = list(sheet.values)
+        # self.table.setHorizontalHeader(values[0])
+    self.table.setHorizontalHeaderLabels(values[0])
+    row = 0
+    for value in values[1:]:
+      col = 0
+      for val in value:
+        self.table.setItem(row,col,QTableWidgetItem(str((val))))
+        col +=1
+      row += 1
     
     
 if __name__ == '__main__':
