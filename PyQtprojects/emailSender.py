@@ -17,6 +17,15 @@ class EmailSender(QMainWindow):
         smtp_server = "smtp.gmail.com"
         sender = "a46203539@gmail.com"
         password = "nchxzbivekkprtrm"
+        content = ssl.create_default_context()
+        if recipient != "":
+          with smtplib.SMTP_SSL(smtp_server, port, context=content) as smtp:
+            smtp.login(sender, password)
+            smtp.sendmail(sender, recipient, message)
+          print("Email Sent")
+        else:
+          print("Email Not Sent!!!")
+          tk.messagebox.showwarning("Can't send mail", "Your Recipeint email address is empty")
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   window = EmailSender()
