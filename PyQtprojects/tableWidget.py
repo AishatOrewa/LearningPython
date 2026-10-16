@@ -9,7 +9,10 @@ class Main(QWidget):
 
     layout = QVBoxLayout()
     self.setLayout(layout)
+    self.table = QTableWidget()
+    layout.addWidget(self.table)
 
+    
     
 if __name__ == '__main__':
   app = QApplication(sys.argv)
