@@ -11,6 +11,12 @@ class EmailSender(QMainWindow):
     self.pushButton.clicked.connect(self.Send)
     def Send(self):
         print("Sending email.....")
+        recipient = self.lineEdit.text()
+        message = self.textEdit.toPlainText()
+        port = 465
+        smtp_server = "smtp.gmail.com"
+        sender = "a46203539@gmail.com"
+        password = "nchxzbivekkprtrm"
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   window = EmailSender()
