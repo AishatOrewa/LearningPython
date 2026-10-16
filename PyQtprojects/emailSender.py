@@ -8,6 +8,9 @@ class EmailSender(QMainWindow):
   def __init__(self):
     super(EmailSender, self).__init__()
     loadUi("C:/Users/Dell/OneDrive/Desktop/LearningPython/PyQtprojects/EmailSender.ui", self)
+    self.pushButton.clicked.connect(self.Send)
+    def Send(self):
+        print("Sending email.....")
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   window = EmailSender()
